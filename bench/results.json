@@ -1,0 +1,39 @@
+{
+  "accuracy": {
+    "change_detection": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "pattern_of_life": {
+      "precision": 0.6,
+      "recall": 1.0,
+      "f1": 0.75
+    },
+    "hotspots": 4,
+    "determinism": true
+  },
+  "performance": [
+    {
+      "observations": 2400,
+      "detect_s": 0.0023,
+      "obs_per_s": 1039771
+    },
+    {
+      "observations": 12000,
+      "detect_s": 0.0102,
+      "obs_per_s": 1181079
+    },
+    {
+      "observations": 48000,
+      "detect_s": 0.0381,
+      "obs_per_s": 1259713
+    }
+  ],
+  "environment": {
+    "python": "3.14.0",
+    "implementation": "CPython",
+    "system": "Windows",
+    "machine": "AMD64"
+  }
+}
