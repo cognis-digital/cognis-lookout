@@ -7,6 +7,7 @@ import json
 from cognis_lookout import synth
 from cognis_lookout.change import detect_new_activity
 from cognis_lookout.patternoflife import anomalies, build_profile
+from cognis_lookout.smalltarget import detect_small_targets
 
 from .metrics import prf
 
@@ -27,7 +28,17 @@ def evaluate() -> dict:
                     detect_new_activity(base, cur, origin=synth.ORIGIN, cell_deg=synth.CELL)}
                    == pred_cells)
 
+    # wide-area small-target (lost hiker/object) detection vs planted pixels
+    img, tpix = synth.landscape_with_people()
+    blobs = detect_small_targets(img, k=5.0)
+    tp = sum(1 for (r, c) in tpix
+             if any(abs(b["row"] - r) <= 1.5 and abs(b["col"] - c) <= 1.5 for b in blobs))
+    small_target = {"planted": len(tpix), "detected": len(blobs),
+                    "recall": round(tp / len(tpix), 4) if tpix else 0.0,
+                    "false_alarms": max(0, len(blobs) - tp)}
+
     return {"change_detection": change_prf, "pattern_of_life": anomaly_prf,
+            "small_target": small_target,
             "hotspots": len(hotspots), "determinism": determinism}
 
 

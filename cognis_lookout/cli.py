@@ -38,6 +38,21 @@ def cmd_pol(args):
     return 0
 
 
+def cmd_search(args):
+    """Wide-area small-target search — e.g. a lost hiker as a pixel in terrain."""
+    from . import synth
+    from .smalltarget import detect_small_targets
+    img, truth = synth.landscape_with_people()
+    blobs = detect_small_targets(img, k=args.k)
+    print(f"COGNIS LOOKOUT | wide-area search over {len(img)}x{len(img[0])} terrain scene (CA-CFAR)")
+    print(f"planted targets: {len(truth)}   detections: {len(blobs)}   (k={args.k} sigma)")
+    for i, b in enumerate(blobs[:10], 1):
+        print(f"  [{i}] pixel ({b['row']},{b['col']}) size={b['size']}px "
+              f"SNR={b['peak_snr']} conf={b['confidence']:.2f}")
+    print("NOTE: non-kinetic search leads (possible person/object); corroborate before tasking.")
+    return 0
+
+
 def build_parser():
     p = argparse.ArgumentParser(prog="cognis-lookout",
                                 description="Cognis Lookout — geospatial change & pattern-of-life (non-kinetic)")
@@ -55,6 +70,10 @@ def build_parser():
     pol = sub.add_parser("pol", help="pattern-of-life anomaly detection")
     pol.add_argument("--observations", required=True)
     pol.set_defaults(func=cmd_pol)
+
+    s = sub.add_parser("search", help="wide-area small-target search (lost hiker/object)")
+    s.add_argument("--k", type=float, default=5.0, help="CFAR threshold (sigma)")
+    s.set_defaults(func=cmd_search)
     return p
 
 

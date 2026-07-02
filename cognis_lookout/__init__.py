@@ -8,5 +8,6 @@ and monitoring only — leads for lawful analysis, not targeting.
 (c) 2026 Cognis Digital LLC (Wyoming, USA). Source-available under COCL-1.0.
 """
 
-__version__ = "0.1.0"
-__all__ = ["geo", "grid", "change", "patternoflife", "geofence", "report", "synth"]
+__version__ = "0.2.0"
+__all__ = ["geo", "grid", "change", "patternoflife", "geofence",
+           "smalltarget", "report", "synth"]

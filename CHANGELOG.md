@@ -2,6 +2,15 @@
 
 Adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] — 2026-07-02
+
+### Added
+- **Wide-area small-target detection** (`smalltarget.py`): CA-CFAR point-target
+  detection to find a faint 1–2 pixel target — a lost hiker or small object —
+  against vast terrain in overhead imagery, with GeoJSON export ("possible
+  person/object" leads). CLI `search`; small-target recall gated in CI.
+- Verified: recovers all planted faint targets (recall 1.0) at ~8 sigma.
+
 ## [0.1.0] — 2026-07-01
 
 Initial public release.

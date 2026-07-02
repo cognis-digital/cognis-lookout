@@ -21,6 +21,7 @@
 - 🗺️ **Change detection** — grids activity into AOI cells and flags cells that became newly active between two time windows (surge + confidence).
 - 🔎 **Pattern-of-life** — learns an entity's normal cells/hours, flags off-pattern observations (location and/or time anomalies).
 - 📍 **Geofencing** — entry/dwell detection over areas of interest.
+- 🔬 **Wide-area small-target search** — CA-CFAR pulls a faint **1–2 pixel target** (lost hiker, small object) out of vast terrain in overhead imagery; exports GeoJSON search leads.
 - 🔒 **Offline / zero-dependency** — pure Python stdlib.
 
 ## Quick start

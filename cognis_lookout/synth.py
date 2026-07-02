@@ -62,3 +62,17 @@ def pol_scenario(seed=31, home_obs=20, anomalies=3):
         planted.add(f"o{oid}")
     rng.shuffle(obs)
     return obs, planted
+
+
+def landscape_with_people(seed=32, H=80, W=80, n_people=4, clutter=0.05, amp=0.42):
+    """A wide, textured terrain scene with a few planted 1-pixel 'people/objects'
+    (~8 sigma over terrain clutter). Returns (image, planted_pixels)."""
+    import random as _r
+    rng = _r.Random(seed)
+    img = [[max(0.0, rng.gauss(0.25, clutter)) for _ in range(W)] for _ in range(H)]
+    truth = set()
+    for _ in range(n_people):
+        r, c = rng.randint(6, H - 7), rng.randint(6, W - 7)
+        img[r][c] += amp
+        truth.add((r, c))
+    return img, truth

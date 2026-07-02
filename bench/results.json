@@ -10,24 +10,30 @@
       "recall": 1.0,
       "f1": 0.75
     },
+    "small_target": {
+      "planted": 4,
+      "detected": 4,
+      "recall": 1.0,
+      "false_alarms": 0
+    },
     "hotspots": 4,
     "determinism": true
   },
   "performance": [
     {
       "observations": 2400,
-      "detect_s": 0.0023,
-      "obs_per_s": 1039771
+      "detect_s": 0.0028,
+      "obs_per_s": 866770
     },
     {
       "observations": 12000,
-      "detect_s": 0.0102,
-      "obs_per_s": 1181079
+      "detect_s": 0.0118,
+      "obs_per_s": 1020633
     },
     {
       "observations": 48000,
-      "detect_s": 0.0381,
-      "obs_per_s": 1259713
+      "detect_s": 0.0646,
+      "obs_per_s": 743459
     }
   ],
   "environment": {
